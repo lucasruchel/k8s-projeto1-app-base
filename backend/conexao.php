@@ -1,5 +1,5 @@
 <?php
-$servername = "";
+$servername = $_ENV["serverName"];
 $username = "root";
 $password = "Senha123";
 $database = "meubanco";
