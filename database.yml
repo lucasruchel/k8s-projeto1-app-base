@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-backend
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+  storageClassName: standard-rwo
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-db
+spec:
+  selector:
+    matchLabels:
+      app: mysql-db
+  template:
+    volumes:
+      - name: pvc-demo-vol
+        persistentVolumeClaim:
+          claimName: pvc-backend
+    metadata:
+      labels:
+        app: mysql-db
+    spec:
+      containers:
+      - name: mysql-db
+        image: mysql:oraclelinux8
+        args: ["--default-authentication-plugin=mysql_native_password"]
+        env:
+          - name: MYSQL_ROOT_PASSWORD
+            value: senha123
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 3306
+        volumeMounts:
+          - mountPath: "/usr/share/nginx/html"
+            name: pvc-demo-vol
