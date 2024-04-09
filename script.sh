@@ -4,7 +4,7 @@ if [ -d dio-projeto1-k8s ]; then
     rm -rf dio-projeto1-k8s
 fi
 
-echo "## Clonando repositorio ##
+echo "## Clonando repositorio ##"
 git clone https://gitlab.com/lucasruchel/dio-projeto1-k8s.git
 
 echo "## Entrando em diretório do projeto ##"
