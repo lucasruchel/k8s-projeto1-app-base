@@ -13,10 +13,10 @@ build_images:
       docker login -u $REGISTRY_USER -p $REGISTRY_PASS
     
     script:
-      docker build -t lucasruchel/projeto1-backend backend/.
-      docker build -t lucasruchel/projeto1-db database/.
-      docker build -t lucasruchel/projeto1-frontend frontend/.
-      docker push lucasruchel/projeto1-backend
-      docker push lucasruchel/projeto1-db
-      docker push lucasruchel/projeto1-frontend
+      - docker build -t lucasruchel/projeto1-backend backend/.
+      - docker build -t lucasruchel/projeto1-db database/.
+      - docker build -t lucasruchel/projeto1-frontend frontend/.
+      - docker push lucasruchel/projeto1-backend
+      - docker push lucasruchel/projeto1-db
+      - docker push lucasruchel/projeto1-frontend
 
