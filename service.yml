@@ -14,6 +14,19 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
+  name: frontend-service
+spec:
+  selector:
+    app: frontend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: Service
+metadata:
   name: mysql-service
 spec:
   selector:

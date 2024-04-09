@@ -1,12 +1,14 @@
 #!/bin/bash
 
-echo "## Criando imagens ##"
-docker build -t lucasruchel/projeto1-backend:2.0 backend/.
-docker build -t lucasruchel/projeto1-db:1.0 database/.
+if [ -d dio-projeto1-k8s ]; then
+    rm -rf dio-projeto1-k8s
+fi
 
-echo "## Upload de imagens ##"
-docker push lucasruchel/projeto1-backend:2.0
-docker push lucasruchel/projeto1-db:1.0
+echo "## Clonando repositorio ##
+git clone https://gitlab.com/lucasruchel/dio-projeto1-k8s.git
+
+echo "## Entrando em diretório do projeto ##"
+cd dio-projeto1-k8s
 
 echo "## Applying deploys  ##"
 kubectl apply -f deployment.yml
