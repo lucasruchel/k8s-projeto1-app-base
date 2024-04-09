@@ -31,6 +31,6 @@ apply_tok8s:
       - chmod 400 $SSH_KEY
     script:
       - scp -o StrictHostKeyChecking=no -i $SSH_KEY script.sh lucas@$SSH_HOST:~/
-      - chmod +x script.sh
-      - ./script.sh
+      - ssh -o StrictHostKeyChecking=no -i $SSH_KEY script.sh lucas@$SSH_HOST chmod +x script.sh
+      - ssh -o StrictHostKeyChecking=no -i $SSH_KEY script.sh lucas@$SSH_HOST ./script.sh
 
