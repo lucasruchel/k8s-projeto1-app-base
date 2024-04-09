@@ -1,5 +1,6 @@
 stages:
   - build
+  - deploy
   
 
 build_images:
@@ -23,4 +24,13 @@ build_images:
       - docker push lucasruchel/projeto1-backend
       - docker push lucasruchel/projeto1-db
       - docker push lucasruchel/projeto1-frontend
+
+apply_tok8s:
+    stage: deploy
+    before_script:
+      - chmod 400 $SSH_KEY
+    script:
+      - scp -o StrictHostKeyChecking=no -i $SSH_KEY script.sh lucas@$SSH_HOST:~/
+      - chmod +x script.sh
+      - ./script.sh
 
